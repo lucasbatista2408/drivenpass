@@ -1,0 +1,66 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model users {
+  id          Int           @id @default(autoincrement())
+  email       String        @unique
+  password    String
+  cards       cards[]
+  credentials credentials[]
+  safe_notes  safe_notes[]
+  wifi        wifi[]
+}
+
+model safe_notes {
+  id Int @id @default(autoincrement())
+  users users @relation(fields: [user_id], references: [id])
+  user_id Int
+  title String 
+  note String 
+}
+
+model wifi {
+  id Int @id @default(autoincrement())
+  users users @relation(fields: [user_id], references: [id])
+  user_id Int
+  network String
+  password String
+  title String
+}
+
+model credentials {
+  id Int @id @default(autoincrement())
+  users users @relation(fields: [user_id], references: [id])
+  user_id Int
+  url String
+  username String
+  password String
+  title String
+}
+
+
+model cards {
+  id Int @id @default(autoincrement())
+  users users @relation(fields: [user_id], references: [id])
+  user_id Int
+  number Int
+  cardholder String
+  cvv String
+  expiration String
+  password String
+  is_virtual Boolean
+  type type
+  title String
+}
+
+enum type {
+  D
+  C
+  CD
+}

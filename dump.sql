@@ -1,0 +1,1 @@
+sudo -u postgres pg_dump drivenpass_db > drivenpass_db
