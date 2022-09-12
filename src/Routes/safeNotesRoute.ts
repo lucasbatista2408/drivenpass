@@ -15,7 +15,7 @@ router.post('/safenote/new', joiValidation(safeNoteSchema), jwtValidation, check
 
 router.get('/safenote', jwtValidation, getSafeNotes)
 
-router.get('/safenotes/:id', jwtValidation, getSafeNotesbyId)
+router.get('/safenote/:id', jwtValidation, getSafeNotesbyId)
 
 router.delete('/safenote/:id/delete', jwtValidation, deleteSafeNote)
 
