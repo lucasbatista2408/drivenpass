@@ -1,0 +1,20 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const createSafeNote_1 = require("../Controllers/safeNoteController/createSafeNote");
+const deleteSafeNote_1 = require("../Controllers/safeNoteController/deleteSafeNote");
+const getSafeNote_1 = require("../Controllers/safeNoteController/getSafeNote");
+const getSafeNoteById_1 = require("../Controllers/safeNoteController/getSafeNoteById");
+const joiValidation_1 = __importDefault(require("../Middleware/joiValidation"));
+const jwtValidation_1 = require("../Middleware/jwtValidation");
+const checkByTitle_1 = require("../Middleware/safeNoteMidd/checkByTitle");
+const safeNoteSchema_1 = require("../Schema/safeNoteSchema");
+const router = (0, express_1.Router)();
+router.post('/safenote/new', (0, joiValidation_1.default)(safeNoteSchema_1.safeNoteSchema), jwtValidation_1.jwtValidation, checkByTitle_1.checkByTitle, createSafeNote_1.createSafeNote);
+router.get('/safenote', jwtValidation_1.jwtValidation, getSafeNote_1.getSafeNotes);
+router.get('/safenote/:id', jwtValidation_1.jwtValidation, getSafeNoteById_1.getSafeNotesbyId);
+router.delete('/safenote/:id/delete', jwtValidation_1.jwtValidation, deleteSafeNote_1.deleteSafeNote);
+exports.default = router;
