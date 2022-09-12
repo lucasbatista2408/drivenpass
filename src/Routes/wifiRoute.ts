@@ -12,13 +12,13 @@ import * as validation from "../Utils/passwordEncrypt"
 const router = Router()
 
 
-router.post('/card/new', jwtValidation, joiValidation(wifiSchema), validation.cryptrEncrypt, createWifi)
+router.post('/wifi/new', jwtValidation, joiValidation(wifiSchema), validation.cryptrEncrypt, createWifi)
 
-router.get('/credential', jwtValidation, getWifi)
+router.get('/wifi', jwtValidation, getWifi)
 
-router.get('/credential/:id', jwtValidation, getWifiById)
+router.get('/wifi/:id', jwtValidation, getWifiById)
 
-router.delete('/credential/:id/delete', jwtValidation, deleteWifi)
+router.delete('/wifi/:id/delete', jwtValidation, deleteWifi)
 
 
 export default router
