@@ -8,7 +8,7 @@ export async function getCardsById(req:any,res:Response){
   const userId:number = req.userId
   const id = parseInt(req.params.id)
 
-  const credential = await cardService.getCardsbyId(id,userId)
+  const card = await cardService.getCardsbyId(id,userId)
 
-  res.status(200).send(credential)
+  res.status(200).send(card)
 }
